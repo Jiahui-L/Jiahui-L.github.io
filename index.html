@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jiahui Liang, Ph.D. candidate in Internet of Things at HKUST (Guangzhou). Research in wireless communications, multimodal sensing, radio maps, and large models.">
+  <title>Jiahui Liang | Academic Homepage</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234f39f6'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-size='17' fill='white'%3EJL%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Serif+4:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme:light; --bg:#fff; --text:#111827; --muted:#64748b; --nav:#f1f5f9; --line:#e2e8f0; --primary:#4f39f6; --accent-bg:#e0e7ff; --highlight:#b91c1c; }
+    :root[data-theme="dark"] { color-scheme:dark; --bg:#111827; --text:#f1f5f9; --muted:#a8b3c5; --nav:#1e293b; --line:#334155; --primary:#a5b4fc; --accent-bg:#312e81; --highlight:#fca5a5; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:95px; }
+    body { position:relative; isolation:isolate; min-height:100vh; margin:0; color:var(--text); background-color:var(--bg); font-family:"Source Serif 4",Georgia,"Times New Roman",serif; font-size:15px; line-height:1.7; }
+    a { color:var(--primary); text-decoration:none; overflow-wrap:anywhere; }
+    a:hover { text-decoration:underline; }
+    a:focus-visible,button:focus-visible,.news-scroll:focus-visible { outline:3px solid var(--primary); outline-offset:4px; }
+    .site-header { position:sticky; top:0; z-index:10; background:var(--bg); border-bottom:1px solid var(--line); box-shadow:0 1px 3px #11182708; }
+    .nav { max-width:1120px; margin:auto; min-height:72px; padding:12px 40px; display:flex; align-items:center; gap:30px; }
+    .brand { font-size:19px; font-weight:900; margin-right:auto; color:var(--text); }
+    nav { display:flex; gap:30px; font-weight:700; }
+    nav a { color:var(--text); white-space:nowrap; }
+    .appearance { width:36px; height:36px; display:grid; place-items:center; padding:0; color:var(--text); background:transparent; border:0; cursor:pointer; }
+    .appearance svg { width:22px; height:22px; }
+    .sun { display:none; }
+    [data-theme="dark"] .moon { display:none; }
+    [data-theme="dark"] .sun { display:block; }
+    .page-layout { max-width:1120px; margin:auto; padding:48px 40px 32px; display:grid; grid-template-columns:260px minmax(0,1fr); gap:55px; align-items:start; }
+    .profile { position:sticky; top:104px; text-align:center; padding-top:0; }
+    .avatar { width:140px; height:180px; margin:0 auto 20px; border-radius:50%; border:3px solid #fff; background:#fff; color:#64748b; display:grid; place-content:center; box-shadow:0 8px 22px #312e8114; font-size:15px; }
+    img.avatar { display:block; object-fit:cover; object-position:center top; }
+    .avatar small { display:block; font-size:12px; }
+    [data-theme="dark"] .avatar { background:#252942; border-color:#475569; color:#b7c2d3; }
+    h1,h2 { font-family:Lora,Georgia,serif; }
+    h1 { font-size:37px; font-weight:700; line-height:1.25; margin:0 0 14px; letter-spacing:-.02em; }
+    #name { transition:opacity .4s; }
+    .position { color:var(--primary); font-size:17px; font-weight:700; line-height:1.45; margin:0 0 9px; }
+    .affiliation { color:var(--muted); font-size:16px; margin:0 0 18px; }
+    .profile-links { display:flex; justify-content:center; flex-wrap:wrap; gap:5px 17px; font-size:13px; color:var(--primary); }
+    .profile-links small { display:block; width:100%; color:var(--muted); font-size:12px; }
+    .profile-contact { margin-top:16px; font-size:13px; }
+    .profile-contact p { margin:8px 0; }
+    h2 { font-size:24px; font-weight:700; line-height:1.4; margin:0 0 13px; }
+    .bio-section + .bio-section { margin-top:27px; }
+    p { margin:8px 0; }
+    ul { margin:8px 0; padding-left:23px; }
+    li { margin-bottom:8px; padding-left:2px; }
+    li p { margin:0; }
+    .body-section { padding:32px 0 0; margin:0; }
+    .biography p,.biography li { text-align:justify; hyphens:auto; }
+    .body-section h2 { margin-bottom:12px; }
+    .publication-list { padding-left:25px; }
+    .publication-list li { padding-bottom:0; margin-bottom:16px; }
+    .paper-title { color:var(--text); font-weight:400; }
+    .paper-controls { color:var(--primary); white-space:normal; }
+    .paper-link { border:1px solid var(--line); border-radius:5px; color:var(--primary); font-size:12px; padding:0 9px; }
+    h3 { font-family:Lora,Georgia,serif; font-size:17px; margin:23px 0 10px; }
+    .publication-heading { display:flex; align-items:center; gap:10px 20px; flex-wrap:wrap; }
+    .publication-heading h2 { margin:0; }
+    .pub-note { color:var(--muted); font-size:12px; margin:0; }
+    .news-scroll { max-height:210px; overflow-y:auto; scrollbar-gutter:stable; padding-right:12px; scrollbar-color:var(--muted) transparent; scrollbar-width:thin; }
+    .news-list { padding-left:21px; margin:0; }
+    .news-list li:last-child { margin-bottom:0; }
+    .news-list li { padding-left:2px; margin-bottom:10px; }
+    .news-date { font-weight:700; white-space:nowrap; margin-right:5px; }
+    .award { color:var(--highlight); font-weight:700; }
+    footer { color:var(--muted); border-top:1px solid var(--line); }
+    .footer-inner { max-width:1120px; padding:20px 40px; margin:auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px 20px; font-size:12px; }
+    footer p { margin:0; }
+    .skip { position:absolute; top:-100px; left:16px; padding:8px 12px; background:var(--bg); z-index:20; }
+    .skip:focus { top:8px; }
+    @media(max-width:760px) {
+      .nav { padding:12px 28px; gap:15px; flex-wrap:wrap; min-height:64px; }
+      .brand { font-size:17px; }
+      nav { gap:16px; font-size:13px; }
+      .appearance { width:28px; height:28px; }
+      .page-layout { grid-template-columns:1fr; gap:36px; padding:36px 28px 24px; }
+      .profile { position:static; padding-top:0; }
+      .avatar { width:120px; height:154px; }
+      h1 { font-size:30px; }
+      h2 { font-size:21px; }
+      .body-section { padding:28px 0 0; }
+      .news-scroll { max-height:240px; }
+      .footer-inner { padding:20px 28px; }
+    }
+    @media(max-width:420px) { .brand { flex:1 1 calc(100% - 48px); } nav { order:3; width:100%; justify-content:space-between; flex-wrap:wrap; gap:8px 12px; font-size:12px; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    @media print { .site-header,footer { display:none; } body { background:#fff; } body::before { display:none; } .news-scroll { max-height:none; overflow:visible; } .page-layout { padding-top:10px; } .profile { position:static; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+  <header class="site-header"><div class="nav">
+    <a class="brand" href="#about">Jiahui Liang</a>
+    <nav aria-label="Page navigation"><a href="#about">About</a><a href="#research">Research</a><a href="#news">News</a><a href="#publications">Publications</a><a href="#service">Service</a></nav>
+    <button class="appearance" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 13a9 9 0 0 1-10-10 9 9 0 1 0 10 10Z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+    </button>
+  </div></header>
+  <main id="main" class="page-layout">
+    <aside class="profile" aria-labelledby="name">
+        <img class="avatar" src="Jiahui_Liang.jpg" alt="Jiahui Liang" width="140" height="180">
+        <h1 id="name" data-en="Jiahui Liang" data-zh="梁嘉辉" aria-label="Jiahui Liang · 梁嘉辉">Jiahui Liang</h1>
+        <p class="position">Ph.D. Candidate</p>
+        <p class="affiliation">Internet of Things Thrust<br>HKUST (Guangzhou)</p>
+        <div class="profile-contact" aria-label="Contact information">
+          <p><a href="mailto:jliang097@connect.hkust-gz.edu.cn">jliang097@connect.hkust-gz.edu.cn</a></p>
+          <p><a href="https://scholar.google.com/citations?user=sYySu98AAAAJ&amp;hl=en">Google Scholar</a></p>
+        </div>
+      </aside>
+    <div class="biography">
+      <section class="bio-section" id="about" aria-labelledby="about-title">
+          <h2 id="about-title">About Me</h2>
+          <p>I am a Ph.D. candidate in the Internet of Things Thrust, Information Hub, at the Hong Kong University of Science and Technology (Guangzhou), advised by <strong><a href="https://sites.google.com/view/shijian-gao">Prof. Shijian Gao</a></strong> and co-advised by <strong><a href="https://yuxuanliang.com/">Prof. Yuxuan Liang</a></strong>. Before that, I obtained my bachelor’s degree from School of Information &amp; Communication Engineering, at the University of Electronic Science and Technology of China (UESTC) in 2024.</p>
+        </section>
+      <section class="body-section" id="research" aria-labelledby="research-title">
+        <h2 id="research-title">Research Interests</h2>
+        <p>My research interests focus on next-generation intelligent wireless networks design, including <strong>multi-dimensional radio field construction guided by real-world priors</strong> and <strong>physical-layer optimization enabled by ubiquitous multi-modal sensing</strong>. I am also exploring AI on RANs and embodied networks.</p>
+      </section>
+      <section class="body-section" id="news" aria-labelledby="news-title">
+        <h2 id="news-title">News</h2>
+        <div class="news-scroll" role="region" aria-label="News updates" tabindex="0">
+          <ul class="news-list">
+            <li><time class="news-date" datetime="2026-09">[Sept. 2026]</time>Submitted "Toward Service-Balanced ISAC: From Coupled RAN to De-Coupled RAN" to an IEEE magazine.</li>
+            <li><time class="news-date" datetime="2026-09">[Sept. 2026]</time>Submitted "Sensing While Communicating: Active Online Spectrum Cartography via Air-Ground Cooperation" to IEEE.</li>
+            <li><time class="news-date" datetime="2026-04">[Apr. 2026]</time>Submitted "Scalable Multimodal Beam Alignment in V2X: An Anti-Imbalance Graph Learning Approach" to IEEE.</li>
+            <li><time class="news-date" datetime="2026-03">[Mar. 2026]</time>My paper "Integrated Sensing, Communication, and Computation for Low-Altitude Networks Towards Seamless Connectivity and Connected Intelligence" has been accepted by <strong>IEEE Internet of Things Magazine</strong> (IF=5.8, JCR Q1).</li>
+            <li><time class="news-date" datetime="2025-12">[Dec. 2025]</time>My paper "Relaying Signal When Monitoring Traffic: Double Use of Aerial Vehicles Towards Intelligent Low-Altitude Networking" received the <strong>Best Paper Award</strong> at <strong>CCHI 2025</strong>.</li>
+            <li><time class="news-date" datetime="2025-12">[Dec. 2025]</time>One of my papers has been accepted by <strong>China Symposium on Cognitive Computing and Hybrid Intelligence (CCHI)</strong>.</li>
+            <li><time class="news-date" datetime="2025-06">[Jun. 2025]</time>One of my papers has been accepted by <strong>IEEE/CIC International Conference on Communications in China (ICCC)</strong>.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="body-section" id="publications" aria-labelledby="publications-title">
+<div class="publication-heading">
+<h2 id="publications-title">Publications</h2>
+<p class="pub-note">* denotes a (co-)corresponding author.</p>
+</div>
+<h3 id="working-papers">Working Papers</h3>
+<ol class="publication-list">
+<li>S. Zhuang, <strong>J. Liang</strong>, S. Gao, “<span class="paper-title">Sensing While Communicating: Active Online Spectrum Cartography via Air-Ground Cooperation</span>,” <em>arXiv, 2026.</em> <span class="paper-controls">[<a href="https://arxiv.org/abs/2609.24119">arXiv</a>]</span></li>
+<li>G. Zhu, L. Miao, B. Ji, <strong>J. Liang</strong>, S. Gao, W. Zhang, X. Cai, J. Zhang, W. Wang, X. Cheng, Q. Yu, “<span class="paper-title">Toward Service-Balanced ISAC: From Coupled RAN to De-Coupled RAN</span>,” <em>arXiv, 2026.</em> <span class="paper-controls">[<a href="https://arxiv.org/abs/2609.25730">arXiv</a>]</span></li>
+<li>S. Gao, <strong>J. Liang*</strong>, Y. Yuan, W. Lu, G. Shen, L. Yang, “<span class="paper-title">FARM: Foundational Aerial Radio Map for Intelligent Low-Altitude Networking</span>,” <em>arXiv, 2026.</em> <span class="paper-controls">[<a href="https://arxiv.org/abs/2604.17362">arXiv</a>]</span></li>
+<li><strong>J. Liang</strong>, S. Wang, S. Gao, “<span class="paper-title">Scalable Multimodal Beam Alignment in V2X: An Anti-Imbalance Graph Learning Approach</span>,” <em>arXiv, 2026.</em> <span class="paper-controls">[<a href="https://arxiv.org/abs/2604.21585">arXiv</a>]</span></li>
+</ol>
+<h3 id="journals">Journals</h3>
+<ol class="publication-list">
+<li>S. Gao, J. Yan, P. Huang, Z. Lu, M. Gong, L. Miao, G. Zhu, <strong>J. Liang</strong>, L. Yang, “<span class="paper-title">Integrated Sensing, Communication, and Computation for Low-Altitude Networks Towards Seamless Connectivity and Connected Intelligence</span>,” <em>IEEE Internet of Things Magazine, vol. 9, no. 3, May 2026, pp. 63–71.</em> (IF=5.8, JCR Q1) <span class="paper-controls">[<a href="https://ieeexplore.ieee.org/document/11417861/">paper</a>]</span></li>
+</ol>
+<h3 id="conferences">Conferences</h3>
+<ol class="publication-list">
+<li>J. Liang, W. Lu, T. Liu, K. Kang, G. Pan, L. Yang, X. Zheng and S. Gao, "<span class="paper-title">Relaying Signal When Monitoring Traffic: Double Use of Aerial Vehicles Towards Intelligent Low-Altitude Networking</span>," <em>in Proceeding of China Symposium on Cognitive Computing and Hybrid Intelligence (CCHI), China, Dec 12–13. 2025.</em> <span class="paper-controls">[<a href="https://ieeexplore.ieee.org/document/11487611/">paper</a>] [<a href="https://arxiv.org/abs/2512.14436">arXiv</a>]</span><p class="award">Best Paper Award</p></li>
+<li>J. Liang, M. Wen, S. Wang, Y. Liang and S. Gao, "<span class="paper-title">Aligning Beam with Imbalanced Multi-modality: A Generative Federated Learning Approach</span>," <em>in Proceeding of IEEE/CIC International Conference on Communications in China (ICCC), China, Aug 10–13. 2025.</em> <span class="paper-controls">[<a href="https://ieeexplore.ieee.org/document/11148831/">paper</a>] [<a href="https://arxiv.org/abs/2504.14835">arXiv</a>]</span></li>
+<li>C. Fang, J. Liang, Z. Liao, J. He, R. Li and Y. Huang, "<span class="paper-title">Novel Dual-Axis Accelerometer Designs Using Cavity Optomechanics: Analysis and Simulation</span>," <em>in Proceeding of Asia Communications and Photonics Conference / International Photonics and Optoelectronics Meetings (ACP/POEM), China, Nov 4–7. 2023.</em> <span class="paper-controls">[<a href="https://ieeexplore.ieee.org/document/10369472/">paper</a>]</span></li>
+</ol>
+</section>
+      <section class="body-section" id="teaching" aria-labelledby="teaching-title">
+      <h2 id="teaching-title">Teaching</h2>
+      <ul><li><strong>Spring 2026</strong> · Teaching Assistant, UCUG-1903 Signal and Information Technology, HKUST (Guangzhou).</li><li><strong>Fall 2025</strong> · Teaching Assistant, UFUG-2103 Linear Algebra, HKUST (Guangzhou).</li></ul>
+    </section>
+      <section class="body-section" id="awards" aria-labelledby="awards-title">
+      <h2 id="awards-title">Honors &amp; Awards</h2>
+      <ul>
+        <li><time datetime="2025-12">[Dec. 2025]</time> Best Paper Award, China Symposium on Cognitive Computing and Hybrid Intelligence.</li>
+        <li><time datetime="2024-05">[May 2024]</time> Yunhui Scholarship for National College Students’ Innovative Entrepreneurial Training Plan Program, UESTC (2%).</li>
+        <li><time datetime="2022-08">[Aug. 2022]</time> National Second Prize, Undergraduate Electronic Design Contest — Embedded System Design Invitational Contest.</li>
+        <li><time datetime="2022-08">[Aug. 2022]</time> First Prize, Southwest Region, 10th National University Students’ Opt-Sci-Tech Competition.</li>
+        <li>[2020–2024] Outstanding/Pioneer Student Scholarship of UESTC.</li>
+      </ul>
+    </section>
+      <section class="body-section" id="service" aria-labelledby="service-title">
+      <h2 id="service-title">Academic Service</h2>
+      <ul><li>IEEE Open Journal of the Communications Society (OJ-COMS)</li><li>IEEE Communications Standards Magazine (ComStd)</li><li>IEEE Communications Letters (CL)</li><li>IET Communications (IET Commun.)</li></ul>
+    </section>
+    </div>
+  </main>
+  <footer><div class="footer-inner"><p>Jiahui Liang · HKUST (Guangzhou)</p><p>© 2026 Jiahui Liang</p></div></footer>
+  <script>
+    const profileName = document.querySelector('#name');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let showChinese = false;
+      setInterval(() => {
+        showChinese = !showChinese;
+        profileName.style.opacity = '0';
+        setTimeout(() => {
+          profileName.textContent = showChinese ? profileName.dataset.zh : profileName.dataset.en;
+          profileName.lang = showChinese ? 'zh-CN' : 'en';
+          profileName.style.opacity = '1';
+        }, 200);
+      }, 3000);
+    }
+    const appearance = document.querySelector('.appearance');
+    appearance.addEventListener('click', () => {
+      const dark = document.documentElement.dataset.theme !== 'dark';
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      appearance.setAttribute('aria-pressed', String(dark));
+      appearance.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    });
+  </script>
+</body>
+</html>
