@@ -89,6 +89,39 @@
     @media(max-width:420px) { .brand { flex:1 1 calc(100% - 48px); } nav { order:3; width:100%; justify-content:space-between; flex-wrap:wrap; gap:8px 12px; font-size:12px; } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
     @media print { .site-header,footer { display:none; } body { background:#fff; } body::before { display:none; } .news-scroll { max-height:none; overflow:visible; } .page-layout { padding-top:10px; } .profile { position:static; } }
+  
+    [hidden] { display:none !important; }
+    .news-date[datetime="2026-10"] { color:var(--highlight); }
+    .research-heading { display:flex; align-items:baseline; flex-wrap:wrap; gap:8px 14px; margin-bottom:5px; }
+    .research-heading h2 { margin:0; }
+    .publication-filters { display:flex; align-items:baseline; flex-wrap:wrap; gap:5px 9px; font-size:13px; color:var(--muted); }
+    .publication-filters button { font:inherit; color:var(--muted); border:0; background:none; padding:3px 0; cursor:pointer; }
+    .publication-filters button[aria-pressed="true"] { color:var(--primary); font-weight:700; }
+    .publication-filters button:hover { color:var(--primary); text-decoration:underline; text-underline-offset:4px; }
+    .research-list { margin-top:23px; }
+    .research-paper { display:grid; grid-template-columns:230px minmax(0,1fr); gap:23px; align-items:start; padding:0 0 25px; margin:0 0 25px; border-bottom:1px solid var(--line); }
+    .research-paper:last-child { border-bottom:0; margin-bottom:0; padding-bottom:0; }
+    .paper-figure { position:relative; display:block; width:100%; aspect-ratio:23 / 15; overflow:hidden; padding:9px; border:1px solid var(--line); border-radius:9px; background:#fff; cursor:zoom-in; box-shadow:0 3px 12px #11182706; transition:transform .2s,box-shadow .2s; }
+    .paper-figure img { display:block; width:100%; height:100%; object-fit:contain; }
+    .paper-figure:hover,.paper-figure:focus-visible { transform:translateY(-2px); box-shadow:0 7px 22px #11182712; }
+    h3.research-title { font-family:inherit; font-size:16px; line-height:1.45; margin:0 0 7px; font-weight:600; }
+    .research-title a { color:var(--text); }
+    .research-title a:hover { color:var(--primary); }
+    .paper-authors,.paper-venue { font-size:13px; line-height:1.55; margin:0 0 5px; }
+    .paper-venue { font-weight:600; }
+    .paper-resources { white-space:nowrap; }
+    .biography .paper-details p { text-align:left; hyphens:none; }
+    .paper-details .award { font-size:inherit; white-space:nowrap; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
+    .figure-dialog { width:min(1040px,calc(100vw - 36px)); max-height:90vh; overflow:auto; padding:20px; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--text); }
+    .figure-dialog::backdrop { background:#11182799; }
+    .dialog-header { display:flex; justify-content:space-between; align-items:start; gap:20px; margin-bottom:16px; }
+    .dialog-header p { margin:0; font-size:14px; line-height:1.5; }
+    .dialog-close { flex:none; font:inherit; font-size:13px; color:var(--text); background:var(--nav); border:1px solid var(--line); border-radius:5px; padding:3px 10px; cursor:pointer; }
+    .figure-dialog img { display:block; width:100%; height:auto; background:#fff; }
+    @media(max-width:1050px) and (min-width:761px) { .research-paper { grid-template-columns:1fr; } .paper-figure { max-width:300px; } }
+    @media(max-width:760px) { .research-heading { gap:8px; } .publication-filters { gap:5px 8px; font-size:12px; } .research-paper { grid-template-columns:1fr; gap:16px; } .paper-figure { max-width:340px; } h3.research-title { font-size:16px; } .paper-authors,.paper-venue { font-size:14px; } }
+    @media(prefers-reduced-motion:reduce) { .paper-figure { transition:none; } }
   </style>
 </head>
 <body>
@@ -125,6 +158,7 @@
         <h2 id="news-title">News</h2>
         <div class="news-scroll" role="region" aria-label="News updates" tabindex="0">
           <ul class="news-list">
+            <li><time class="news-date" datetime="2026-10">[Oct. 2026]</time>My paper "FARM: Foundational Aerial Radio Map for Intelligent Low-Altitude Networking" has been accepted by <strong>npj Wireless Technology</strong>. This is my first paper as a corresponding author. Many thanks to my supervisor and collaborators for their guidance and support.</li>
             <li><time class="news-date" datetime="2026-09">[Sept. 2026]</time>Submitted "Toward Service-Balanced ISAC: From Coupled RAN to De-Coupled RAN" to an IEEE magazine.</li>
             <li><time class="news-date" datetime="2026-09">[Sept. 2026]</time>Submitted "Sensing While Communicating: Active Online Spectrum Cartography via Air-Ground Cooperation" to IEEE.</li>
             <li><time class="news-date" datetime="2026-04">[Apr. 2026]</time>Submitted "Scalable Multimodal Beam Alignment in V2X: An Anti-Imbalance Graph Learning Approach" to IEEE.</li>
@@ -136,27 +170,101 @@
         </div>
       </section>
       <section class="body-section" id="publications" aria-labelledby="publications-title">
-<div class="publication-heading">
-<h2 id="publications-title">Publications</h2>
-<p class="pub-note">* denotes a (co-)corresponding author.</p>
+<div class="research-heading">
+  <h2 id="publications-title">Publications</h2>
+  <div class="publication-filters" role="group" aria-label="Filter publications">
+    <span aria-hidden="true">(</span>
+    <button type="button" data-filter="selected" aria-pressed="true">Show selected</button><span aria-hidden="true">/</span>
+    <button type="button" data-filter="working" aria-pressed="false">Working papers</button><span aria-hidden="true">/</span>
+    <button type="button" data-filter="conference" aria-pressed="false">Conferences</button><span aria-hidden="true">/</span>
+    <button type="button" data-filter="journal" aria-pressed="false">Journals</button>
+    <span aria-hidden="true">)</span>
+  </div>
 </div>
-<h3 id="working-papers">Working Papers</h3>
-<ol class="publication-list">
-<li>S. Zhuang, <strong>J. Liang</strong>, S. Gao, “<span class="paper-title">Sensing While Communicating: Active Online Spectrum Cartography via Air-Ground Cooperation</span>,” <em>arXiv, 2026.</em> <span class="paper-controls">[<a href="https://arxiv.org/abs/2609.24119">arXiv</a>]</span></li>
-<li>G. Zhu, L. Miao, B. Ji, <strong>J. Liang</strong>, S. Gao, W. Zhang, X. Cai, J. Zhang, W. Wang, X. Cheng, Q. Yu, “<span class="paper-title">Toward Service-Balanced ISAC: From Coupled RAN to De-Coupled RAN</span>,” <em>arXiv, 2026.</em> <span class="paper-controls">[<a href="https://arxiv.org/abs/2609.25730">arXiv</a>]</span></li>
-<li>S. Gao, <strong>J. Liang*</strong>, Y. Yuan, W. Lu, G. Shen, L. Yang, “<span class="paper-title">FARM: Foundational Aerial Radio Map for Intelligent Low-Altitude Networking</span>,” <em>arXiv, 2026.</em> <span class="paper-controls">[<a href="https://arxiv.org/abs/2604.17362">arXiv</a>]</span></li>
-<li><strong>J. Liang</strong>, S. Wang, S. Gao, “<span class="paper-title">Scalable Multimodal Beam Alignment in V2X: An Anti-Imbalance Graph Learning Approach</span>,” <em>arXiv, 2026.</em> <span class="paper-controls">[<a href="https://arxiv.org/abs/2604.21585">arXiv</a>]</span></li>
-</ol>
-<h3 id="journals">Journals</h3>
-<ol class="publication-list">
-<li>S. Gao, J. Yan, P. Huang, Z. Lu, M. Gong, L. Miao, G. Zhu, <strong>J. Liang</strong>, L. Yang, “<span class="paper-title">Integrated Sensing, Communication, and Computation for Low-Altitude Networks Towards Seamless Connectivity and Connected Intelligence</span>,” <em>IEEE Internet of Things Magazine, vol. 9, no. 3, May 2026, pp. 63–71.</em> (IF=5.8, JCR Q1) <span class="paper-controls">[<a href="https://ieeexplore.ieee.org/document/11417861/">paper</a>]</span></li>
-</ol>
-<h3 id="conferences">Conferences</h3>
-<ol class="publication-list">
-<li>J. Liang, W. Lu, T. Liu, K. Kang, G. Pan, L. Yang, X. Zheng and S. Gao, "<span class="paper-title">Relaying Signal When Monitoring Traffic: Double Use of Aerial Vehicles Towards Intelligent Low-Altitude Networking</span>," <em>in Proceeding of China Symposium on Cognitive Computing and Hybrid Intelligence (CCHI), China, Dec 12–13. 2025.</em> <span class="paper-controls">[<a href="https://ieeexplore.ieee.org/document/11487611/">paper</a>] [<a href="https://arxiv.org/abs/2512.14436">arXiv</a>]</span><p class="award">Best Paper Award</p></li>
-<li>J. Liang, M. Wen, S. Wang, Y. Liang and S. Gao, "<span class="paper-title">Aligning Beam with Imbalanced Multi-modality: A Generative Federated Learning Approach</span>," <em>in Proceeding of IEEE/CIC International Conference on Communications in China (ICCC), China, Aug 10–13. 2025.</em> <span class="paper-controls">[<a href="https://ieeexplore.ieee.org/document/11148831/">paper</a>] [<a href="https://arxiv.org/abs/2504.14835">arXiv</a>]</span></li>
-<li>C. Fang, J. Liang, Z. Liao, J. He, R. Li and Y. Huang, "<span class="paper-title">Novel Dual-Axis Accelerometer Designs Using Cavity Optomechanics: Analysis and Simulation</span>," <em>in Proceeding of Asia Communications and Photonics Conference / International Photonics and Optoelectronics Meetings (ACP/POEM), China, Nov 4–7. 2023.</em> <span class="paper-controls">[<a href="https://ieeexplore.ieee.org/document/10369472/">paper</a>]</span></li>
-</ol>
+<p class="pub-note">* denotes a (co-)corresponding author.</p>
+<div class="research-list">
+<article class="research-paper" data-category="journal" data-selected="true" data-paper="farm">
+  <button class="paper-figure" type="button" data-image="assets/farm-figure-1.png" data-caption="FARM: Foundational Aerial Radio Map for Intelligent Low-Altitude Networking — Figure 1" aria-label="Enlarge Figure 1 for FARM: Foundational Aerial Radio Map for Intelligent Low-Altitude Networking">
+    <img src="assets/farm-figure-1.png" alt="Unified aerial radio map construction across scenarios and available priors." width="1247" height="597" loading="lazy">
+  </button>
+  <div class="paper-details">
+    <h3 class="research-title"><a href="https://arxiv.org/abs/2604.17362">FARM: Foundational Aerial Radio Map for Intelligent Low-Altitude Networking</a></h3>
+    <p class="paper-authors">S. Gao, <strong>J. Liang*</strong>, Y. Yuan, W. Lu, G. Shen, L. Yang</p>
+    <p class="paper-venue"><span>npj Wireless Technology · Accepted, 2026</span> · <span class="paper-resources"><a href="https://arxiv.org/abs/2604.17362">arXiv</a></span></p>
+  </div>
+</article>
+<article class="research-paper" data-category="working" data-selected="true" data-paper="scalable">
+  <button class="paper-figure" type="button" data-image="assets/scalable-figure-1.png" data-caption="Scalable Multimodal Beam Alignment in V2X: An Anti-Imbalance Graph Learning Approach — Figure 1" aria-label="Enlarge Figure 1 for Scalable Multimodal Beam Alignment in V2X: An Anti-Imbalance Graph Learning Approach">
+    <img src="assets/scalable-figure-1.png" alt="Vehicle-side multimodal sensing and roadside graph-based beam coordination." width="727" height="510" loading="lazy">
+  </button>
+  <div class="paper-details">
+    <h3 class="research-title"><a href="https://arxiv.org/abs/2604.21585">Scalable Multimodal Beam Alignment in V2X: An Anti-Imbalance Graph Learning Approach</a></h3>
+    <p class="paper-authors"><strong>J. Liang</strong>, S. Wang, S. Gao</p>
+    <p class="paper-venue"><span class="paper-resources"><a href="https://arxiv.org/abs/2604.21585">arXiv</a></span> · 2026</p>
+  </div>
+</article>
+<article class="research-paper" data-category="conference" data-selected="true" data-paper="relaying">
+  <button class="paper-figure" type="button" data-image="assets/relaying-figure-1.png" data-caption="Relaying Signal When Monitoring Traffic: Double Use of Aerial Vehicles Towards Intelligent Low-Altitude Networking — Figure 1" aria-label="Enlarge Figure 1 for Relaying Signal When Monitoring Traffic: Double Use of Aerial Vehicles Towards Intelligent Low-Altitude Networking">
+    <img src="assets/relaying-figure-1.png" alt="UAV-assisted air–ground networks for relaying and traffic monitoring." width="713" height="593" loading="lazy">
+  </button>
+  <div class="paper-details">
+    <h3 class="research-title"><a href="https://ieeexplore.ieee.org/document/11487611/">Relaying Signal When Monitoring Traffic: Double Use of Aerial Vehicles Towards Intelligent Low-Altitude Networking</a></h3>
+    <p class="paper-authors"><strong>J. Liang</strong>, W. Lu, T. Liu, K. Kang, G. Pan, L. Yang, X. Zheng and S. Gao</p>
+    <p class="paper-venue"><span>in Proceeding of China Symposium on Cognitive Computing and Hybrid Intelligence (CCHI), China, Dec 12–13. 2025.</span> · <span class="paper-resources"><a href="https://ieeexplore.ieee.org/document/11487611/">paper</a> · <a href="https://arxiv.org/abs/2512.14436">arXiv</a> · <span class="award">Best Paper Award</span></span></p>
+  </div>
+</article>
+<article class="research-paper" data-category="working" data-selected="false" data-paper="sensing" hidden>
+  <button class="paper-figure" type="button" data-image="assets/sensing-figure-1.png" data-caption="Sensing While Communicating: Active Online Spectrum Cartography via Air-Ground Cooperation — Figure 1" aria-label="Enlarge Figure 1 for Sensing While Communicating: Active Online Spectrum Cartography via Air-Ground Cooperation">
+    <img src="assets/sensing-figure-1.png" alt="Closed-loop air–ground cooperation for active online spectrum cartography." width="1723" height="617" loading="lazy">
+  </button>
+  <div class="paper-details">
+    <h3 class="research-title"><a href="https://arxiv.org/abs/2609.24119">Sensing While Communicating: Active Online Spectrum Cartography via Air-Ground Cooperation</a></h3>
+    <p class="paper-authors">S. Zhuang, <strong>J. Liang</strong>, S. Gao</p>
+    <p class="paper-venue"><span class="paper-resources"><a href="https://arxiv.org/abs/2609.24119">arXiv</a></span> · 2026</p>
+  </div>
+</article>
+<article class="research-paper" data-category="working" data-selected="false" data-paper="isac" hidden>
+  <button class="paper-figure" type="button" data-image="assets/isac-figure-1.png" data-caption="Toward Service-Balanced ISAC: From Coupled RAN to De-Coupled RAN — Figure 1" aria-label="Enlarge Figure 1 for Toward Service-Balanced ISAC: From Coupled RAN to De-Coupled RAN">
+    <img src="assets/isac-figure-1.png" alt="Comparison of coupled RAN and de-coupled RAN for service-balanced ISAC." width="1723" height="707" loading="lazy">
+  </button>
+  <div class="paper-details">
+    <h3 class="research-title"><a href="https://arxiv.org/abs/2609.25730">Toward Service-Balanced ISAC: From Coupled RAN to De-Coupled RAN</a></h3>
+    <p class="paper-authors">G. Zhu, L. Miao, B. Ji, <strong>J. Liang</strong>, S. Gao, W. Zhang, X. Cai, J. Zhang, W. Wang, X. Cheng, Q. Yu</p>
+    <p class="paper-venue"><span class="paper-resources"><a href="https://arxiv.org/abs/2609.25730">arXiv</a></span> · 2026</p>
+  </div>
+</article>
+<article class="research-paper" data-category="journal" data-selected="false" data-paper="integrated" hidden>
+  <button class="paper-figure" type="button" data-image="assets/integrated-figure-1.png" data-caption="Integrated Sensing, Communication, and Computation for Low-Altitude Networks Towards Seamless Connectivity and Connected Intelligence — Figure 1" aria-label="Enlarge Figure 1 for Integrated Sensing, Communication, and Computation for Low-Altitude Networks Towards Seamless Connectivity and Connected Intelligence">
+    <img src="assets/integrated-figure-1.png" alt="Integrated sensing, communication and computation for low-altitude networks." width="1680" height="857" loading="lazy">
+  </button>
+  <div class="paper-details">
+    <h3 class="research-title"><a href="https://ieeexplore.ieee.org/document/11417861/">Integrated Sensing, Communication, and Computation for Low-Altitude Networks Towards Seamless Connectivity and Connected Intelligence</a></h3>
+    <p class="paper-authors">S. Gao, J. Yan, P. Huang, Z. Lu, M. Gong, L. Miao, G. Zhu, <strong>J. Liang</strong>, L. Yang</p>
+    <p class="paper-venue"><span>IEEE Internet of Things Magazine, vol. 9, no. 3, May 2026, pp. 63–71. (IF=5.8, JCR Q1)</span> · <span class="paper-resources"><a href="https://ieeexplore.ieee.org/document/11417861/">paper</a></span></p>
+  </div>
+</article>
+<article class="research-paper" data-category="conference" data-selected="false" data-paper="aligning" hidden>
+  <button class="paper-figure" type="button" data-image="assets/aligning-figure-1.png" data-caption="Aligning Beam with Imbalanced Multi-modality: A Generative Federated Learning Approach — Figure 1" aria-label="Enlarge Figure 1 for Aligning Beam with Imbalanced Multi-modality: A Generative Federated Learning Approach">
+    <img src="assets/aligning-figure-1.png" alt="Multimodal beam alignment with modality imbalance and label imbalance." width="1720" height="553" loading="lazy">
+  </button>
+  <div class="paper-details">
+    <h3 class="research-title"><a href="https://ieeexplore.ieee.org/document/11148831/">Aligning Beam with Imbalanced Multi-modality: A Generative Federated Learning Approach</a></h3>
+    <p class="paper-authors"><strong>J. Liang</strong>, M. Wen, S. Wang, Y. Liang and S. Gao</p>
+    <p class="paper-venue"><span>in Proceeding of IEEE/CIC International Conference on Communications in China (ICCC), China, Aug 10–13. 2025.</span> · <span class="paper-resources"><a href="https://ieeexplore.ieee.org/document/11148831/">paper</a> · <a href="https://arxiv.org/abs/2504.14835">arXiv</a></span></p>
+  </div>
+</article>
+<article class="research-paper" data-category="conference" data-selected="false" data-paper="optomechanics" hidden>
+  <button class="paper-figure" type="button" data-image="assets/optomechanics-figure-8.png" data-caption="Novel Dual-Axis Accelerometer Designs Using Cavity Optomechanics: Analysis and Simulation — Figure 8" aria-label="Enlarge Figure 8 for Novel Dual-Axis Accelerometer Designs Using Cavity Optomechanics: Analysis and Simulation">
+    <img src="assets/optomechanics-figure-8.png" alt="Dual-axis accelerometer designs using cavity optomechanics." width="817" height="1097" loading="lazy">
+  </button>
+  <div class="paper-details">
+    <h3 class="research-title"><a href="https://ieeexplore.ieee.org/document/10369472/">Novel Dual-Axis Accelerometer Designs Using Cavity Optomechanics: Analysis and Simulation</a></h3>
+    <p class="paper-authors">C. Fang, <strong>J. Liang</strong>, Z. Liao, J. He, R. Li and Y. Huang</p>
+    <p class="paper-venue"><span>in Proceeding of Asia Communications and Photonics Conference / International Photonics and Optoelectronics Meetings (ACP/POEM), China, Nov 4–7. 2023.</span> · <span class="paper-resources"><a href="https://ieeexplore.ieee.org/document/10369472/">paper</a></span></p>
+  </div>
+</article>
+</div>
+<p class="filter-status sr-only" role="status" aria-live="polite">3 selected papers shown.</p>
 </section>
       <section class="body-section" id="teaching" aria-labelledby="teaching-title">
       <h2 id="teaching-title">Teaching</h2>
@@ -174,11 +282,16 @@
     </section>
       <section class="body-section" id="service" aria-labelledby="service-title">
       <h2 id="service-title">Academic Service</h2>
-      <ul><li>IEEE Open Journal of the Communications Society (OJ-COMS)</li><li>IEEE Communications Standards Magazine (ComStd)</li><li>IEEE Communications Letters (CL)</li><li>IET Communications (IET Commun.)</li></ul>
+      <ul><li>IEEE Journal on Selected Areas in Communications (JSAC)</li><li>IEEE Open Journal of the Communications Society (OJ-COMS)</li><li>IEEE Communications Standards Magazine (ComStd)</li><li>IEEE Communications Letters (CL)</li><li>IET Communications (IET Commun.)</li><li>Journal on Advances in Signal Processing (JASP)</li></ul>
     </section>
     </div>
   </main>
   <footer><div class="footer-inner"><p>Jiahui Liang · HKUST（GZ）</p><p>© 2026 Jiahui Liang</p></div></footer>
+
+  <dialog class="figure-dialog" aria-labelledby="figure-caption">
+    <div class="dialog-header"><p id="figure-caption"></p><button type="button" class="dialog-close">Close</button></div>
+    <img alt="">
+  </dialog>
   <script>
     const profileName = document.querySelector('#name');
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -200,6 +313,28 @@
       appearance.setAttribute('aria-pressed', String(dark));
       appearance.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     });
+
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const papers = document.querySelectorAll('.research-paper');
+    filterButtons.forEach(button => button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      let count = 0;
+      papers.forEach(paper => {
+        paper.hidden = filter === 'selected' ? paper.dataset.selected !== 'true' : paper.dataset.category !== filter;
+        if (!paper.hidden) count++;
+      });
+      document.querySelector('.filter-status').textContent = `${count} publication${count === 1 ? '' : 's'} shown: ${button.textContent}.`;
+    }));
+    const figureDialog = document.querySelector('.figure-dialog');
+    document.querySelectorAll('.paper-figure').forEach(button => button.addEventListener('click', () => {
+      const image = figureDialog.querySelector('img');
+      image.src = button.dataset.image;
+      image.alt = button.querySelector('img').alt;
+      document.querySelector('#figure-caption').textContent = button.dataset.caption;
+      figureDialog.showModal();
+    }));
+    document.querySelector('.dialog-close').addEventListener('click', () => figureDialog.close());
   </script>
 </body>
 </html>
